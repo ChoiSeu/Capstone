@@ -17,6 +17,7 @@ import torch
 import numpy as np
 import time
 
+import local2nex
 # To use CSIKit, You should install csikit
 # pip install csikit
 # I will add the command in 'makefile'
