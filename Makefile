@@ -5,7 +5,7 @@ SOURCE		 = src
 MODEL		 = model
 SAMPLE		 = test_sample
 
-all:
+all: run
 
 run run_test run.test test:
 	${PYTHON} ${SOURCE}/test.py --model=${MODEL}.pth\
