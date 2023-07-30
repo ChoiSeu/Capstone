@@ -26,7 +26,7 @@ from CSIKit.util import csitools
 #---------------------------------------------------------
 def load_model( args ):
     device = torch.device('cpu')
-    model = torch.load('./weights/%s' %args.model, map_location=device)
+    model = torch.load('./models/%s' %args.model, map_location=device)
     print('\n**************Load Mdoel**************\n')
     print(model)
     print('*****************************************')
