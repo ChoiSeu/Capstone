@@ -48,43 +48,43 @@ def dataloader( args ):
     csi_matrix7 = my_reader7.read_file(name7 %1, scaled=True)
     csi_data7, no_frames7, no_subcarriers7 = csitools.get_CSI(csi_matrix7, metric="amplitude")
 
-    for i in range (2, args.num):
+    for i in range (2, args.num + 1):
         my_reader = get_reader(name1 %i)
         temp = my_reader.read_file(name1 %i, scaled=True)
         tmp0, tmp1, tmp2 = csitools.get_CSI(temp, metric="amplitude")
         csi_data1 = np.concatenate((csi_data1, tmp0), axis = 0)
 
-    for i in range (2, args.num):
+    for i in range (2, args.num + 1):
         my_reader = get_reader(name2 %i)
         temp = my_reader.read_file(name2 %i, scaled=True)
         tmp0, tmp1, tmp2 = csitools.get_CSI(temp, metric="amplitude")
         csi_data2 = np.concatenate((csi_data2, tmp0), axis = 0)
 
-    for i in range (2, args.num):
+    for i in range (2, args.num + 1):
         my_reader = get_reader(name3 %i)
         temp = my_reader.read_file(name3 %i, scaled=True)
         tmp0, tmp1, tmp2 = csitools.get_CSI(temp, metric="amplitude")
         csi_data3 = np.concatenate((csi_data3, tmp0), axis = 0)
 
-    for i in range (2, args.num):
+    for i in range (2, args.num + 1):
         my_reader = get_reader(name4 %i)
         temp = my_reader.read_file(name4 %i, scaled=True)
         tmp0, tmp1, tmp2 = csitools.get_CSI(temp, metric="amplitude")
         csi_data4 = np.concatenate((csi_data4, tmp0), axis = 0)
 
-    for i in range (2, args.num):
+    for i in range (2, args.num + 1):
         my_reader = get_reader(name5 %i)
         temp = my_reader.read_file(name5 %i, scaled=True)
         tmp0, tmp1, tmp2 = csitools.get_CSI(temp, metric="amplitude")
         csi_data5 = np.concatenate((csi_data5, tmp0), axis = 0)
 
-    for i in range (2, args.num):
+    for i in range (2, args.num + 1):
         my_reader = get_reader(name6 %i)
         temp = my_reader.read_file(name6 %i, scaled=True)
         tmp0, tmp1, tmp2 = csitools.get_CSI(temp, metric="amplitude")
         csi_data6 = np.concatenate((csi_data6, tmp0), axis = 0)
 
-    for i in range (2, args.num):
+    for i in range (2, args.num + 1):
         my_reader = get_reader(name7 %i)
         temp = my_reader.read_file(name7 %i, scaled=True)
         tmp0, tmp1, tmp2 = csitools.get_CSI(temp, metric="amplitude")
