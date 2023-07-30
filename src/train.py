@@ -147,6 +147,16 @@ def dataloader( args ):
 
     return train_data_loader, x_test, y_test
 
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
 if __name__ == '__main__':
     def get_args():
         parser = argparse.ArgumentParser(description='HAR by WiFi CSI data')
@@ -155,8 +165,9 @@ if __name__ == '__main__':
         parser.add_argument('-b', '--batch_size', type=int, default=20, metavar='batch_size', help='(int)batch size of the dataloader(default: 20)')
         parser.add_argument('-e', '--epochs', type=int, default=100, metavar='epochs')
         parser.add_argument('-l', '--lr', type=float, default=0.001, metavar='lr')
-        parser.add_argument('-m', '--more', type=bool, default=False, metavar='more', help='(bool)If you want to train more, set this arg True(default: False)')
+        parser.add_argument('-m', '--more', type=str2bool, default=False, metavar='more', help='(bool)If you want to train more, set this arg True(default: False)')
         parser.add_argument('-g', '--goal', type=float, default=0.9, metavar='goal')
+        parser.add_argument('-p', '--pretrained_model', type=str, default='None', metavar='pretrained_model', help='(str)If you want to improve or finetuning with pretrained model, set this arg(default: None)')
         args = parser.parse_args()
         return args
 
@@ -167,15 +178,17 @@ if __name__ == '__main__':
         if torch.cuda.is_available()
         else "cpu"
     )
-
+    
+    train_data_loader, x_test, y_test = dataloader( args )
     if args.more == False:
-        train_data_loader, x_test, y_test = dataloader( args )
         FC1 = torch.nn.Linear(39, 128, bias=True)
         FC2 = torch.nn.Linear(128, 128, bias=True)
         FC3 = torch.nn.Linear(128, 64, bias=True)
         FC4 = torch.nn.Linear(64, 7, bias=True)
         elu = torch.nn.ELU()
         model = torch.nn.Sequential(FC1, elu, FC2, elu, FC3, elu, FC4).to(device)
+    else:
+        model = torch.load('./models/%s' %args.pretrained_model)
 
     # Initialize the loss function
     criterion = torch.nn.CrossEntropyLoss().to(device)  # 내부에 Softmax를 포함함
