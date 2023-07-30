@@ -3,7 +3,7 @@
 This repo is just for 'Inferencing' until now. 
 But I will integrate all process in a month.( Maybe:) )
 
-# *Note:*
+# *Note*
  - I haven't set up the CUDA environment yet.
  - Device is 'cuda', but Utilization rate is 0 %
 
